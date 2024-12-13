@@ -5,58 +5,59 @@
 This program find a linear and an exponential realtion between pollution concentration in fish and distance to emitter. Then given a concentration will find an estimation of the distance to the pollution emmiter.
 
 The program will:
-1. Read in initial data of concentration and distance provided by Professor Jean-Christophe Loubier (HES-SO Valais-Wallis) and print graphs ("premiersgraphs.py").
-2. Find the parameters of the relation between pollution concentration and distance to emitter using two model : exponetial and linear ("regression_lineaire.c").
+1. Read in initial data of concentration and distance provided by Professor Jean-Christophe Loubier (HES-SO Valais-Wallis) and print graphs ("*premiersgraphs.py*").
+2. Find the parameters of the relation between pollution concentration and distance to emitter using two model : exponetial and linear ("*regression_lineaire.c*").
 3. Graph data and model obtained, and predict distance to emitter given pollution concentration with the uncertanty.
 
 ## Project structure
 
-- "initial" contains input data for the regression and for the prediction
-- "internal_data" contains files used for passing information between C and Python. They are automatically edited by the program and should not be manually modified.
-- "code" contains program code.
-- "results" contains saved .jpg files of graphs and final parameters.
+- "*initial*" contains input data for the regression and for the prediction
+- "*internal_data*" contains files used for passing information between C and Python. They are automatically edited by the program and should not be manually modified.
+- "*code*" contains program code.
+- "*results*" contains saved .jpg files of graphs and final parameters.
 
 ### Inputs and Outputs
 
 Inputs:
-- "data.csv" is a semicolon-delimited file.
-- "ennui_sur_blase.csv" is a semicolon-delimited file.
+- "*data.csv*" is a semicolon-delimited file.
+- "*ennui_sur_blase.csv*" is a semicolon-delimited file.
 
 Internal files:
-- "fixed_data_cadmium.csv" is a semicolon-delimited file.
-- "fixed_data_cadmium_log.csv" is a semicolon-delimited file.
-- "fixed_data_iron.csv" is a semicolon-delimited file.
-- "fixed_data_iron_log.csv" is a semicolon-delimited file.
+- "*fixed_data_cadmium.csv*" is a semicolon-delimited file.
+- "*fixed_data_cadmium_log.csv*" is a semicolon-delimited file.
+- "*fixed_data_iron.csv*" is a semicolon-delimited file.
+- "*fixed_data_iron_log.csv*" is a semicolon-delimited file.
 
 Outputs:
-- "results" contains several image files, each has a custom name of format: "fixed_iron.png". You can save them or delete them as required.
-- "param.csv" contains parameters that were found by regression.
-- "results.txt" is a text file containing summarized information of the simulation, such as final distance to pollution emitter uncertanty of this result using thw two models. Do **not** delete this file.
+- "*results*" contains several image files, each has a custom name of format: "fixed_iron.png". You can save them or delete them as required.
+- "*param.csv*" contains parameters that were found by regression.
+- "*results.txt*" is a text file containing summarized information of the simulation, such as final distance to pollution emitter uncertanty of this result using thw two models. Do **not** delete this file.
 
 ## Implementation details
 
 **Overview:**
-- Python sends input values to C through a text file, which contains parameters selected by the user.
-- The simulation is handled by C. It directly outputs the results of computation into a CSV file.
-- Python also handles the output and visualisation.
+- Python reads initial data, prints graphs, eliminates outliers and writes new data with selected data and without outliers modifies some of the data (applies log of certain data).
+- C reads internal data values.
+- The regression is handled by C. It directly outputs the found parameters into a CSV file.
+- Python also handles the output, visualisation of the models, prediction of the distance with uncertainty given concentration of pollutant.
 
 **Structure**: In the directory "*Code/*" are located:
-- "*RhineData.py*"
-    - Reads in the CSVs located in "*Data*".
-    - Computes average monthly values of river parameters : flowrate / temperature / dissolved oxygen...
-- "*Parameterchoice.py*"
-    - Imports "*RhineData.py*" as a module.
-    - Writes all selected parameters ("*RhineData.py*" + pollution values) into a text file "*Internal/PythonParameters.txt*".
-- "*Computations.c*"
-    - Reads in "*Internal/PythonParameters.txt*".
-    - Performs computations.
-    - Exports results into the CSV "*Internal/CalculatedData.csv*".
-- "*Visualisation.py*"
-    - Executes the compiled C file.
-    - Reads in the CSV "*Internal/CalculatedData.csv*".
-    - Plots results in a separate window.
-    - Saves key plots to directory "*Results*".
-    - Writes a summary file to "*Results*".
+- "*premiersgraphs.py*"
+    - Imports csv, numpy and matplotlib.pyplot as a module
+    - Reads in the CSVs located in "*data.csv*".
+    - Selects wanted data : concentrations of pollutants
+    - Plots concentration of different pollution concentrations as a function of distance to emitter, eliminating the outliers, and replotting data.
+    - Returns new data and ln of data.
+- "*regression_lineaire.c*"
+    - Includes <stdio.h>, <stdlib.h> and <string.h> libraries.
+    - Calculates mean square error, gradient of given data using functions.
+    - Uses these functions find parameters of models using a gradients descent.
+    - Writes found parameters into a csv file "*param.csv*".
+- "*final_graph_prediction.py*"
+    - Imports csv, numpy and matplotlib.pyplot as a module
+    - Reads in "*param.csv*", "*fixed_data_iron.csv*", "*fixed_data_iron_log.csv*", "*fixed_data_cadmium.csv*", "*fixed_data_cadmium_log.csv*"
+    - Plot data and each models individually using parameters in "*param.csv*" and comparision between models.
+    - Exports graphs as "*comparision_cadmium.png*", "*prediction_cadmium.png*", ...
 
 ## Instructions
 
