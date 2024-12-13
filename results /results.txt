@@ -1,0 +1,9 @@
+distance to emitter found with linear model:
+1060.7972991377023 m
+with a standard deviation of:
+296.9896105800691 m
+
+for exponetial model :
+838.6166685269702 m
+with a standard deviation of:
+338.65782507962047 m
