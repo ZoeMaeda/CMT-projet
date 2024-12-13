@@ -11,7 +11,7 @@ The program will:
 
 ## Project structure
 
-- "initial_data" contains input data for the regression and for the prediction
+- "initial" contains input data for the regression and for the prediction
 - "internal_data" contains files used for passing information between C and Python. They are automatically edited by the program and should not be manually modified.
 - "code" contains program code.
 - "results" contains saved .jpg files of graphs and final parameters.
@@ -19,19 +19,19 @@ The program will:
 ### Inputs and Outputs
 
 Inputs:
-- "*Data/Rhine_depth.csv*" is a semicolon-delimited file.
-- "*Data/Rhine_DO_Palmrainbrücke.csv*" is a semicolon-delimited file.
-- "*Data/Rhine_Flowrate_Rheinhalle.csv*" is a semicolon-delimited file.
-- "*Data/Rhine_Watertemperature_Palmrainbrucke.csv*" is a semicolon-delimited file.
-- "*Data/Rhine_windspeeds.txt*" is a semicolon-delimited file.
+- "data.csv" is a semicolon-delimited file.
+- "ennui_sur_blase.csv" is a semicolon-delimited file.
 
 Internal files:
-- "*Internal/CalculatedData.csv*" is a comma-delimited file.
-- "*Internal/PythonParameters.txt*" is a text file.
+- "fixed_data_cadmium.csv" is a semicolon-delimited file.
+- "fixed_data_cadmium_log.csv" is a semicolon-delimited file.
+- "fixed_data_iron.csv" is a semicolon-delimited file.
+- "fixed_data_iron_log.csv" is a semicolon-delimited file.
 
 Outputs:
-- "*Results*" contains several image files, each has a custom name of format: "*Dissolved_Oxygen_{Month}_{Value}_percent.png*". You can save them or delete them as required.
-- "*Results/Results.txt*" is a text file containing summarized information of the simulation, such as critical time and distance. Do **not** delete this file.
+- "results" contains several image files, each has a custom name of format: "fixed_iron.png". You can save them or delete them as required.
+- "param.csv" contains parameters that were found by regression.
+- "results.txt" is a text file containing summarized information of the simulation, such as final distance to pollution emitter uncertanty of this result using thw two models. Do **not** delete this file.
 
 ## Implementation details
 
