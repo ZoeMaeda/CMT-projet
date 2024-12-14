@@ -24,22 +24,22 @@ distance = data[:,6]
 
 
 # for cadmium
-# plt.scatter(distance,cadmium)
-# plt.title('cadmium concentration as a function of distance')
-# plt.xlabel('distance to emissary in m')
-# plt.ylabel('cadmium concentration in 10^-2 g/L')
-# plt.savefig('initial_cadmium.png')
-# plt.show()
+plt.scatter(distance,cadmium)
+plt.title('cadmium concentration as a function of distance')
+plt.xlabel('distance to emissary in m')
+plt.ylabel('cadmium concentration in 10^-2 g/L')
+plt.savefig('initial_cadmium.png')
+plt.show()
 
 # after plotting the data, we decided to eliminate the outliers in the cadmium data (it is a datapoint that is significantly different from other observations)
 cadmiumv2 = np.array([i for i in cadmium if i<120])
 distancev2 = np.array([distance[i] for i in range(len(cadmium)) if cadmium[i]<120])
-# plt.scatter(distancev2,cadmiumv2)
-# plt.title('cadmium concentration as a function of distance')
-# plt.xlabel('distance to emissary in m')
-# plt.ylabel('cadmium concentration in 10^-2 g/L')
-# plt.savefig('fixed_cadmium.png')
-# plt.show()
+plt.scatter(distancev2,cadmiumv2)
+plt.title('cadmium concentration as a function of distance')
+plt.xlabel('distance to emissary in m')
+plt.ylabel('cadmium concentration in 10^-2 g/L')
+plt.savefig('fixed_cadmium.png')
+plt.show()
 
 # # with log scale on y axis
 cadmium_log = np.log(cadmiumv2)
@@ -52,32 +52,32 @@ plt.show()
 
 
 # for copper
-# plt.scatter(distance,copper)
-# plt.title('copper concentration as a function of distance')
-# plt.xlabel('distance to emissary in m')
-# plt.ylabel('copper concentration in 10^-2 g/L')
-# plt.savefig('initial_copper.png')
-# plt.show()
+plt.scatter(distance,copper)
+plt.title('copper concentration as a function of distance')
+plt.xlabel('distance to emissary in m')
+plt.ylabel('copper concentration in 10^-2 g/L')
+plt.savefig('initial_copper.png')
+plt.show()
 # after plotting the data, we decided not to consider this pollutant because the concentration and the distance did not seem to be correlated
 
 
 # # for iron
-# plt.scatter(distance,iron) #pas mal
-# plt.title('iron concentration as a function of distance')
-# plt.xlabel('distance to emissary in m')
-# plt.ylabel('iron concentration in 10^-2 g/L')
-# plt.savefig('initial_iron.png')
-# plt.show()
+plt.scatter(distance,iron) #pas mal
+plt.title('iron concentration as a function of distance')
+plt.xlabel('distance to emissary in m')
+plt.ylabel('iron concentration in 10^-2 g/L')
+plt.savefig('initial_iron.png')
+plt.show()
 
 # # after plotting the data, we decided to eliminate the outliers in the iron data (it is a datapoint that is significantly different from other observations)
 ironv2 = np.array([i for i in iron if i<500 and i>100])
 distancev3 = np.array([distance[i] for i in range(len(iron)) if iron[i]<500 and iron[i]>100])
-# plt.scatter(distancev3,ironv2)
-# plt.title('iron concentration as a function of distance')
-# plt.xlabel('distance to emissary in m')
-# plt.ylabel('iron concentration in 10^-2 g/L')
-# plt.savefig('fixed_iron.png')
-# plt.show()
+plt.scatter(distancev3,ironv2)
+plt.title('iron concentration as a function of distance')
+plt.xlabel('distance to emissary in m')
+plt.ylabel('iron concentration in 10^-2 g/L')
+plt.savefig('fixed_iron.png')
+plt.show()
 
 # # with log scale on y axis
 iron_log = np.log(ironv2)
@@ -89,12 +89,12 @@ plt.savefig('fixed_iron_log.png')
 plt.show()
 
 # for zinc
-# plt.scatter(distance,zinc) 
-# plt.title('zinc concentration as a function of distance')
-# plt.xlabel('distance to emissary in m')
-# plt.ylabel('zinc concentration in 10^-2 g/L')
-# plt.savefig('initial_zinc.png')
-# plt.show()
+plt.scatter(distance,zinc) 
+plt.title('zinc concentration as a function of distance')
+plt.xlabel('distance to emissary in m')
+plt.ylabel('zinc concentration in 10^-2 g/L')
+plt.savefig('initial_zinc.png')
+plt.show()
 # after plotting the data, we decided not to consider this pollutant because the concentration and the distance did not seem to be correlated
 
 
@@ -116,5 +116,3 @@ np.savetxt("fixed_data_cadmium.csv",combined,delimiter=';',fmt='%f')
 # for log of cadmium
 combined = np.column_stack((distancev2,cadmium_log))
 np.savetxt("fixed_data_cadmium_log.csv",combined,delimiter=';',fmt='%f')
-
-# https://www.youtube.com/watch?v=vG6tDQc86Rs
