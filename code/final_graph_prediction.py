@@ -123,17 +123,6 @@ with open('ennui_sur_blase.csv', newline = '') as file:
     concentrations = np.array([float(row[0]) for row in csvreader])
     print(concentrations)
 
-distances_linear = distance_prediction(concentrations,param_iron)
-print(distances_linear)
-distance_esb_linear = np.mean(distances_linear)
-print(distance_esb_linear)
-
-distances_exp = distance_prediction_exponential_model(concentrations,param_iron_log)
-print(distances_exp)
-distance_esb_exp = np.mean(distances_exp)
-print(distance_esb_exp)
-
-
 # uncertanty of final distances 
 def uncertainty(concentrations,iron,distance_iron,param,model,model_prediction):
     variance_distance = np.sum((distance_iron-model_prediction(iron,param))**2)/(len(iron)-2)
@@ -142,7 +131,14 @@ def uncertainty(concentrations,iron,distance_iron,param,model,model_prediction):
     variance_prediction = variance_distance*(1+1/len(iron)+np.sum((concentrations-np.mean(iron))**2)/(np.sum((distance_iron-np.mean(distance_iron))**2)))
     return np.sqrt(variance_prediction)
 
+distances_linear = distance_prediction(concentrations,param_iron)
+distance_esb_linear = np.mean(distances_linear)
+print(f"predicted distance using linear model : {distance_esb_linear} m")
 
+print(f"standard deviation using linear model : {uncertainty(concentrations,iron,distance_iron,param_iron,model_linear,distance_prediction)} m")
 
-print(f"For linear model :\nsigma = {uncertainty(concentrations,iron,distance_iron,param_iron,model_linear,distance_prediction)}m")
-print(f"For exponential model :\nsigma = {uncertainty(concentrations,iron,distance_iron,param_iron_log,model_exponential,distance_prediction_exponential_model)}m")
+distances_exp = distance_prediction_exponential_model(concentrations,param_iron_log)
+distance_esb_exp = np.mean(distances_exp)
+print(f"predicted distance using exponential model : {distance_esb_exp} m")
+
+print(f"standard deviation exponential model : {uncertainty(concentrations,iron,distance_iron,param_iron_log,model_exponential,distance_prediction_exponential_model)}m")
