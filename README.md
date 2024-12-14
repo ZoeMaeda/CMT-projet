@@ -61,45 +61,30 @@ Outputs:
 
 ## Instructions
 
-To reproduce results in the report, four steps should be followed:
-1. Navigate to the "*Parameterchoice.py*" function located in the "*Code*" directory. The function contains commented instructions for the user to modify input parameters. Modify as desired, and save the file.
-2. Navigate to the makefile to ensure the Python interpreter selected is yours.
-3. Open the terminal from the project root directory (location of this README.md file). You can check this is the case by typing:
-    ```
-    ls
-    ```
-    The terminal should return:
-    ```
-    Code    Data    Internal    README.md   Results    makefile
-    ```
-4. Run the following line in the terminal:
-    ```
-    make
-    ```
-The program will run automatically, and will open two plotting windows in full screen. Once you close them , the program cleans up compiled filed files and terminates automatically.
-
+To reproduce results in the report, three steps should be followed:
+1. Navigate to the "*premiersgraphs.py*" function located in the "code" directory. The program should be run, and will open eight plotting windows one after the other, save them and save internal data.
+2. Navigate to the "*regression_lineaire.c*" function located in the "code" directory. This program should be run using terminal or run button. "*param.csv*" will be saved.
+3. Navigate to the "*final_graph_prediction.py*" function located in the "code" directory. The program should be run, and will open 6 plotting windows one after the other, save them and return in the terminal :
+   predicted distance using linear model :
+   standard deviation using linear model :
+   predicted distance using exponetial model :
+   standard deviation using exponetial model :
 ## Requirements
 
 Versions of Python and C used are as follows.
 ```
 $ python --version
-Python 3.11.5
+Python 3.9.12
 
 $ gcc --version
-Apple clang version 14.0.0
+Apple clang version 15.0.0
 ```
-The Python libraries utilized were the following:
+The Python libraries utilized were taken from anaconda :
 ```
-pandas 2.1.4 py311hdb55bb0_0
 
-numpy 1.26.0 py311h728a8a3_0  
-numpy-base 1.26.0 py311h53bf9ac_0
+numpy 1.26.4 py311h728a8a3_0  
 
-subprocess 2.4
-
-matplotlib 3.8.0 py311hecd8cb5_0  
-matplotlib-base 3.8.0 py311h41a4f6b_0  
-matplotlib-inline 0.1.6 py311hecd8cb5_0 
+matplotlib 3.8.4 py311hecd8cb5_0   
 
 csv 1.0
 ```
@@ -108,14 +93,12 @@ csv 1.0
 
 ### Data
 
-The data files "*Rhine_DO_Palmrainbrücke.csv*", "*Rhine_Flowrate_Rheinhalle.csv*"  and "*Rhine_Watertemperature_Palmrainbrucke.csv*" come from the [Swiss Federal Bureau for the Environment](https://www.bafu.admin.ch/bafu/en/home/topics/water/state/data/obtaining-monitoring-data-on-the-topic-of-water/hydrological-data-service-for-watercourses-and-lakes.html).
+The data file "*data.csv*" was provided by Professor Jean-Christophe Loubier (HES-SO Valais-Wallis).
 
-The data file "*Rhine_depth.csv*" comes from the [French eauFrance](hydro.eaufrance.fr).
-
-The data file "*Rhine_windspeeds.txt*" comes from the [Swiss Federal Office of Meteorology](https://www.meteoswiss.admin.ch/services-and-publications/service/weather-and-climate-products/data-portal-for-teaching-and-research.html).
+The data from "*ennui_sur_blase.csv*" was made up by ourselves.
 
 ### Formulae
 
-The function tracking dissolved oxygen relies on the [Streeter-Phelps](https://en.wikipedia.org/wiki/Streeter%E2%80%93Phelps_equation) equation, taken from Pearson's *[Introduction to Environmental Engineering and Science](https://www.pearson.com/en-gb/subject-catalog/p/introduction-to-environmental-engineering-and-science-pearson-new-international-edition/P200000004949/9781292025759)*.
+The function gradient descent relies on the algoritm generally attributed to Augustin-Louis Cauchy. An overview of the method is available in this article : Gradient Descent in Machine Learning: A Basic Introduction (https://builtin.com/data-science/gradient-descent).
 
-The function tracking pollutant concentrations is based on the Van Genuchten equation, solved by Jin & al in *[Mitigation of impact of a major benzene spill into a river](https://www.sciencedirect.com/science/article/pii/S0043135420300257)*.
+The statistical knowledge was taken from the statistics class we had.
